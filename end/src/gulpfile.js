@@ -15,12 +15,17 @@ var minCss = 'style.min.css';
 // vendor static css variables
 var distVendorCss = '../web/css/vendor';
 var vendorCss = 'css/vendor/*.css';
-var vendorPacksMin = 'vendor.packs.min.css';
+var vendorPackCssMin = 'vendor.packs.min.css';
 
 // static javascript variables
 var srcMainJs = 'js/main.js';
 var distMainJs = '../web/js';
 var minMainJs = 'main.min.js';
+
+// vendor static javascript variables
+var distVendorJs = '../web/js/vendor';
+var vendorJs = 'js/vendor/plugins/*.js';
+var vendorPackJsMin = 'vendor.packs.min.js';
 
 // Styles
 gulp.task('sass', function(){
@@ -51,7 +56,7 @@ gulp.task('vendor-css', function(){
        console.log(err);
        this.emit('end');
    }))
-   .pipe(concat(vendorPacksMin))
+   .pipe(concat(vendorPackCssMin))
    .pipe(autoprefixer({
        browsers: ['last 2 versions'],
        cascade: false
@@ -72,4 +77,11 @@ gulp.task('main-js', function(){
    .pipe(concat(minMainJs))
    .pipe(sourcemaps.write('./maps'))
    .pipe(gulp.dest(distMainJs));
+});
+
+gulp.task('vendor-js', function(){
+   return gulp.src(vendorJs)
+   .pipe(uglify())
+   .pipe(concat(vendorPackJsMin))
+   .pipe(gulp.dest(distVendorJs));
 });
