@@ -4,17 +4,25 @@ var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
 
 
-// static variables
+// static css variables
 var srcScss = 'scss/style.scss';
 var distCss = '../web/css';
 var minCss = 'style.min.css';
-// vendor static variables
+
+// vendor static css variables
 var distVendorCss = '../web/css/vendor';
 var vendorCss = 'css/vendor/*.css';
 var vendorPacksMin = 'vendor.packs.min.css';
 
+// static javascript variables
+var srcMainJs = 'js/main.js';
+var distMainJs = '../web/js';
+var minMainJs = 'main.min.js';
+
+// Styles
 gulp.task('sass', function(){
     console.log('starting sass task');
     return gulp.src(srcScss)
@@ -53,4 +61,15 @@ gulp.task('vendor-css', function(){
    })) // Converts Sass to Css with gulp sass
    .pipe(gulp.dest(distVendorCss));
    
+});
+// /Styles
+
+// Scripts
+gulp.task('main-js', function(){
+   return gulp.src(srcMainJs)
+   .pipe(sourcemaps.init())
+   .pipe(uglify())
+   .pipe(concat(minMainJs))
+   .pipe(sourcemaps.write('./maps'))
+   .pipe(gulp.dest(distMainJs));
 });
