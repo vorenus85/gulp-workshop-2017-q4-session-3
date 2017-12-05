@@ -1,8 +1,11 @@
-"# gulp-workshop-2017-q4-session-3"
+# Javascript tasks with gulp
 
-# 1. Minify (uglfy) main.js and copy into web folder change its name to main.min.js
+Work to the <b>start</b> folder, the solutions are in the <b>end</b> folder
 
-Declare gulp-uglify in our gulpfile.js
+##  1. Uglify 
+Minify (uglify) main.js and copy into web folder change its name to main.min.js
+
+Declare gulp-uglify in your gulpfile.js
 
 ```
 var uglify = require('gulp-uglify');
@@ -31,7 +34,8 @@ gulp.task('main-js', function(){
 });
 ```
 
-# 2. Reduce vendor js requests! Minify, and concat into one file vendor javascripts, the new filename will be vendor.packs.min.js
+# 2. Reduce app requests 
+vendor javascripts minify, and concat into one file, the new filename will be vendor.packs.min.js
 
 Declare some static variables
 
@@ -53,4 +57,5 @@ gulp.task('vendor-js', function(){
 });
 ```
 
-# 3. Bottom in index.html delete 7 js vendor links and put our vendor.packs.min.js link
+# 3.  Modify index.html
+Bottom in index.html delete 7 js vendor links and put our vendor.packs.min.js link
